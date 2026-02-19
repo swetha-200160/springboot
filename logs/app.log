@@ -1,0 +1,14 @@
+2026-02-19T10:31:09.292+05:30  INFO 2780 --- [test] [main] com.example.demo.TestApplication         : Starting TestApplication v0.0.1-SNAPSHOT using Java 17.0.12 with PID 2780 (C:\Users\swethasuresh\works\code\demo\target\demo-0.0.1-SNAPSHOT.jar started by swethasuresh in C:\Users\swethasuresh\works\code\demo)
+2026-02-19T10:31:09.317+05:30 DEBUG 2780 --- [test] [main] com.example.demo.TestApplication         : Running with Spring Boot v4.0.2, Spring v7.0.3
+2026-02-19T10:31:09.321+05:30  INFO 2780 --- [test] [main] com.example.demo.TestApplication         : No active profile set, falling back to 1 default profile: "default"
+2026-02-19T10:31:14.474+05:30  INFO 2780 --- [test] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 9090 (http)
+2026-02-19T10:31:14.601+05:30  INFO 2780 --- [test] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-02-19T10:31:14.607+05:30  INFO 2780 --- [test] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.15]
+2026-02-19T10:31:14.790+05:30  INFO 2780 --- [test] [main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 5204 ms
+2026-02-19T10:31:16.851+05:30  INFO 2780 --- [test] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 9090 (http) with context path '/'
+2026-02-19T10:31:16.945+05:30  INFO 2780 --- [test] [main] com.example.demo.TestApplication         : Started TestApplication in 9.86 seconds (process running for 12.129)
+2026-02-19T10:33:28.878+05:30  INFO 2780 --- [test] [http-nio-9090-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-02-19T10:33:28.882+05:30  INFO 2780 --- [test] [http-nio-9090-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-02-19T10:33:28.888+05:30  INFO 2780 --- [test] [http-nio-9090-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
+2026-02-19T10:42:25.820+05:30  INFO 2780 --- [test] [SpringApplicationShutdownHook] o.s.boot.tomcat.GracefulShutdown         : Commencing graceful shutdown. Waiting for active requests to complete
+2026-02-19T10:42:28.013+05:30  INFO 2780 --- [test] [tomcat-shutdown] o.s.boot.tomcat.GracefulShutdown         : Graceful shutdown complete
