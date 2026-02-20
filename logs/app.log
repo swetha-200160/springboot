@@ -23,3 +23,17 @@
 2026-02-20T11:01:26.777+05:30  INFO 29180 --- [test] [http-nio-9090-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
 2026-02-20T11:02:47.961+05:30  INFO 29180 --- [test] [SpringApplicationShutdownHook] o.s.boot.tomcat.GracefulShutdown         : Commencing graceful shutdown. Waiting for active requests to complete
 2026-02-20T11:02:50.050+05:30  INFO 29180 --- [test] [tomcat-shutdown] o.s.boot.tomcat.GracefulShutdown         : Graceful shutdown complete
+2026-02-20T11:03:36.163+05:30  INFO 29636 --- [test] [main] com.example.demo.TestApplication         : Starting TestApplication v0.0.1-SNAPSHOT using Java 17.0.12 with PID 29636 (C:\Users\swethasuresh\works\code\demo\target\demo-0.0.1-SNAPSHOT.jar started by swethasuresh in C:\Users\swethasuresh\works\code\demo)
+2026-02-20T11:03:36.195+05:30 DEBUG 29636 --- [test] [main] com.example.demo.TestApplication         : Running with Spring Boot v4.0.2, Spring v7.0.3
+2026-02-20T11:03:36.201+05:30  INFO 29636 --- [test] [main] com.example.demo.TestApplication         : No active profile set, falling back to 1 default profile: "default"
+2026-02-20T11:03:41.199+05:30  INFO 29636 --- [test] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 9090 (http)
+2026-02-20T11:03:41.248+05:30  INFO 29636 --- [test] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-02-20T11:03:41.251+05:30  INFO 29636 --- [test] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.15]
+2026-02-20T11:03:41.365+05:30  INFO 29636 --- [test] [main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 4913 ms
+2026-02-20T11:03:43.400+05:30  INFO 29636 --- [test] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 9090 (http) with context path '/'
+2026-02-20T11:03:43.547+05:30  INFO 29636 --- [test] [main] com.example.demo.TestApplication         : Started TestApplication in 10.563 seconds (process running for 13.145)
+2026-02-20T11:03:50.491+05:30  INFO 29636 --- [test] [http-nio-9090-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-02-20T11:03:50.493+05:30  INFO 29636 --- [test] [http-nio-9090-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-02-20T11:03:50.499+05:30  INFO 29636 --- [test] [http-nio-9090-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 4 ms
+2026-02-20T11:04:57.397+05:30  INFO 29636 --- [test] [SpringApplicationShutdownHook] o.s.boot.tomcat.GracefulShutdown         : Commencing graceful shutdown. Waiting for active requests to complete
+2026-02-20T11:05:00.577+05:30  INFO 29636 --- [test] [tomcat-shutdown] o.s.boot.tomcat.GracefulShutdown         : Graceful shutdown complete
