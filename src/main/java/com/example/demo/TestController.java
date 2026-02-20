@@ -12,7 +12,9 @@ public class TestController {
 
     @GetMapping("/")
     public String home() {
-        return "Application is running successfully!";
+        return "Great question 👍 — this is exactly the right mindset for DevOps.
+
+Let’s make this very concrete and provable, not hand-wavy.!";
     }
 
     @GetMapping("/health")
