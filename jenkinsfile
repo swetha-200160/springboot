@@ -1,53 +1,72 @@
 pipeline {
     agent any
-
-    triggers {
-        githubPush()
-    }
-
+ 
     environment {
-        BRANCH = "develop"
-        REPO_URL = "git@github.com:swetha-200160/java-project.git"
-
-        DEPLOY_DIR = "C:/deploy/java-app"
-        JAR_NAME  = "java-project.jar"
-        JAVA_HOME = "C:/Program Files/Java/jdk-17"
+        DEPLOY_DIR = 'C:/jenkins/deploy/springboot'
+        JAR_NAME   = 'app.jar'
+        APP_PORT  = '9090'
+        APP_URL   = 'http://127.0.0.1:9090/'
     }
-
+ 
+    tools {
+        maven 'Maven3.9'
+        jdk 'JDK17'
+    }
+ 
     stages {
-
-        stage('Checkout Code') {
+ 
+        stage('Checkout') {
             steps {
-                git branch: "${BRANCH}",
-                    url: "${REPO_URL}",
-                    credentialsId: "github-ssh"
+                git credentialsId: 'github-ssh',
+                    url: 'git@github.com:swetha-200160/springboot.git'
             }
         }
-
-        stage('Build Maven Package') {
+ 
+        stage('Build') {
             steps {
-                bat 'mvnw.cmd clean package -DskipTests'
+                bat 'mvn clean package -DskipTests'
             }
         }
-
-        stage('Deploy JAR') {
+ 
+        stage('Deploy & Run (Local)') {
+    steps {
+        bat '''
+        echo ==== Stop app if running ====
+        for /F "tokens=5" %%a in ('netstat -ano ^| findstr :%APP_PORT%') do taskkill /PID %%a /F
+ 
+        echo ==== Create deploy directory ====
+        if not exist "%DEPLOY_DIR%" mkdir "%DEPLOY_DIR%"
+ 
+        echo ==== Copy JAR ====
+        copy /Y target\\demo-0.0.1-SNAPSHOT.jar "%DEPLOY_DIR%\\%JAR_NAME%"
+ 
+        echo ==== Start application in background ====
+        cd /d "%DEPLOY_DIR%"
+ 
+        start "" cmd /c "java -jar %JAR_NAME% --server.port=%APP_PORT% > app.log 2>&1"
+        '''
+    }
+}
+ 
+        stage('Verify Application') {
             steps {
-                bat """
-                echo Stopping application running on port 9090
-                for /f "tokens=5" %%a in ('netstat -ano ^| findstr :9090') do taskkill /PID %%a /F
-
-                echo Preparing deploy directory
-                if not exist "%DEPLOY_DIR%" mkdir "%DEPLOY_DIR%"
-
-                echo Copying new JAR
-                copy /Y target\\*.jar "%DEPLOY_DIR%\\%JAR_NAME%"
-
-                echo Starting application on port 9090
-                cd /d "%DEPLOY_DIR%"
-
-                start "" cmd /c "\"%JAVA_HOME%/bin/java.exe\" -jar \"%DEPLOY_DIR%/%JAR_NAME%\" --server.port=9090 > app.log 2>&1"
-                """
+                bat '''
+                echo ==== Waiting for application startup ====
+                ping 127.0.0.1 -n 20 > nul
+ 
+                echo ==== Checking HTTP endpoint ====
+                powershell -Command "try { $r = Invoke-WebRequest -Uri '%APP_URL%' -UseBasicParsing -TimeoutSec 10; if ($r.StatusCode -ne 200) { exit 1 } } catch { exit 1 }"
+                '''
             }
+        }
+    }
+ 
+    post {
+        success {
+            echo "✅ Application is running at ${APP_URL}"
+        }
+        failure {
+            echo "❌ Deployment failed. Check app.log"
         }
     }
 }
