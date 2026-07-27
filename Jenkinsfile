@@ -37,7 +37,7 @@ tools {
 
         stage('Stop Old Container') {
             steps {
-                bat 'docker rm -f %CONTAINER_NAME% || exit 0'
+                bat 'docker ps -q --filter "name=%CONTAINER_NAME%" | findstr . && docker rm -f %CONTAINER_NAME% || exit 0'
             }
         }
 
