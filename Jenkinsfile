@@ -1,7 +1,8 @@
 pipeline {
     agent any
 tools {
-        maven 'Maven'
+    maven 'Maven-3.9.16'
+}
     }
     environment {
         IMAGE_NAME = "springboot-monitoring"
