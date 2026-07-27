@@ -3,7 +3,6 @@ pipeline {
 tools {
     maven 'Maven-3.9.16'
 }
-    }
     environment {
         IMAGE_NAME = "springboot-monitoring"
         CONTAINER_NAME = "springboot-app"
