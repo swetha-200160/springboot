@@ -49,19 +49,17 @@ tools {
     }
 }
 
-        stage('Application Health Check') {
-            steps {
-                bat 'curl http://localhost:%APP_PORT%/java-app/actuator/prometheus'
-            }
-        }
-
-        stage('Verify Prometheus Metrics') {
-            steps {
-                bat 'curl http://localhost:%APP_PORT%/actuator/prometheus'
-            }
-        }
+  stage('Application Health Check') {
+    steps {
+        bat 'curl http://localhost:%APP_PORT%/java-app/actuator/health'
     }
+}
 
+stage('Verify Prometheus Metrics') {
+    steps {
+        bat 'curl http://localhost:%APP_PORT%/java-app/actuator/prometheus'
+    }
+}
     post {
         success {
             echo 'Application deployed successfully.'
