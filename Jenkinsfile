@@ -55,7 +55,10 @@ pipeline {
         stage('Application Health Check') {
     steps {
         bat '''
-        timeout /t 15
+        echo Waiting for Spring Boot application...
+
+        ping 127.0.0.1 -n 10 > nul
+
         curl -f http://localhost:%APP_PORT%/java-app/actuator/health
         '''
     }
