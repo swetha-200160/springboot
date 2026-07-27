@@ -1,6 +1,8 @@
 pipeline {
     agent any
-
+tools {
+        maven 'Maven'
+    }
     environment {
         IMAGE_NAME = "springboot-monitoring"
         CONTAINER_NAME = "springboot-app"
