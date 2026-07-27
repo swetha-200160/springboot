@@ -51,7 +51,7 @@ tools {
 
         stage('Application Health Check') {
             steps {
-                bat 'curl http://localhost:%APP_PORT%/actuator/health'
+                bat 'curl http://localhost:%APP_PORT%/java-app/actuator/prometheus'
             }
         }
 
