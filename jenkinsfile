@@ -1,0 +1,72 @@
+pipeline {
+    agent any
+ 
+    environment {
+        DEPLOY_DIR = 'C:/jenkins/deploy/springboot'
+        JAR_NAME   = 'app.jar'
+        APP_PORT  = '9090'
+        APP_URL   = 'http://127.0.0.1:9090/'
+    }
+ 
+    tools {
+        maven 'Maven3.9'
+        jdk 'JDK17'
+    }
+ 
+    stages {
+ 
+        stage('Checkout') {
+            steps {
+                git credentialsId: 'github-ssh',
+                    url: 'git@github.com:swetha-200160/springboot.git'
+            }
+        }
+ 
+        stage('Build') {
+            steps {
+                bat 'mvn clean package -DskipTests'
+            }
+        }
+ 
+        stage('Deploy to Local Server') {
+    steps {
+        bat '''
+        echo Deploying application locally on port 9090...
+
+        if not exist C:\\apps\\springboot (
+            mkdir C:\\apps\\springboot
+        )
+
+        copy /Y target\\demo-0.0.1-SNAPSHOT.jar C:\\apps\\springboot\\demo.jar
+
+        echo Stopping existing Java app (if any)...
+        for /f "tokens=5" %%a in ('netstat -ano ^| findstr :9090') do taskkill /F /PID %%a >nul 2>&1
+
+        echo Starting application on port 9090...
+        start "" java -jar C:\\apps\\springboot\\demo.jar --server.port=9090
+        '''
+    }
+}
+ 
+        stage('Verify Application') {
+            steps {
+                bat '''
+                echo ==== Waiting for application startup ====
+                ping 127.0.0.1 -n 20 > nul
+ 
+                echo ==== Checking HTTP endpoint ====
+                powershell -Command "try { $r = Invoke-WebRequest -Uri '%APP_URL%' -UseBasicParsing -TimeoutSec 10; if ($r.StatusCode -ne 200) { exit 1 } } catch { exit 1 }"
+                '''
+            }
+        }
+    }
+ 
+    post {
+        success {
+            echo "✅ Application is running at ${APP_URL}"
+        }
+        failure {
+            echo "❌ Deployment failed. Check app.log"
+        }
+    }
+}
