@@ -53,10 +53,13 @@ pipeline {
         }
 
         stage('Application Health Check') {
-            steps {
-                bat 'curl http://localhost:%APP_PORT%/java-app/actuator/health'
-            }
-        }
+    steps {
+        bat '''
+        timeout /t 15
+        curl -f http://localhost:%APP_PORT%/java-app/actuator/health
+        '''
+    }
+}
 
         stage('Verify Prometheus Metrics') {
             steps {
