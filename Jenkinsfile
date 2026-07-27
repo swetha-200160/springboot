@@ -69,7 +69,13 @@ pipeline {
                 bat 'curl http://localhost:%APP_PORT%/java-app/actuator/prometheus'
             }
         }
-
+          stage('Verify Grafana') {
+    steps {
+        bat '''
+        curl -f http://localhost:3000/api/health
+        '''
+    }
+}
     }   // <-- This closes stages block
 
     post {
