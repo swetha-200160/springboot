@@ -44,10 +44,10 @@ tools {
 }
 
         stage('Run Docker Container') {
-            steps {
-                bat 'docker run -d --name %CONTAINER_NAME% -p %APP_PORT%:8082 %IMAGE_NAME%'
-            }
-        }
+    steps {
+        bat 'docker run -d --name %CONTAINER_NAME% -p %APP_PORT%:8080 %IMAGE_NAME%'
+    }
+}
 
         stage('Application Health Check') {
             steps {
