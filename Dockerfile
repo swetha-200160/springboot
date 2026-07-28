@@ -3,18 +3,23 @@ FROM eclipse-temurin:21-jdk
 WORKDIR /app
 
 # Build-time arguments
-ARG PROJECT_PORT=8080
+ARG PROJECT_PORT=8082
 ARG ROOT_PATH=/java-app
 ARG JAR_FILE=target/*.jar
 
 # Copy the JAR
 COPY ${JAR_FILE} app.jar
 
-# Environment variables
+# Spring Boot configuration
 ENV SERVER_PORT=${PROJECT_PORT}
 ENV CONTEXT_PATH=${ROOT_PATH}
 
-# Expose the port
+# OpenTelemetry configuration
+ENV OTEL_SERVICE_NAME=springboot-app
+ENV OTEL_EXPORTER_OTLP_ENDPOINT=http://host.docker.internal:4317
+ENV OTEL_EXPORTER_OTLP_PROTOCOL=grpc
+
+# Expose application port
 EXPOSE ${SERVER_PORT}
 
 # Start Spring Boot
