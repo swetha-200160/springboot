@@ -43,11 +43,9 @@ pipeline {
         }
 
         stage('Stop Old Container') {
-            steps {
-                bat '''
-                    docker rm -f %CONTAINER_NAME% || exit 0
-                '''
-            }
+             steps { 
+                bat 'docker rm -f %CONTAINER_NAME% 2>nul' 
+                } 
         }
 
         stage('Run Docker Container with OTEL') {
@@ -63,13 +61,17 @@ pipeline {
             }
         }
 
-        stage('Run Application') { 
-            steps { 
-                bat 'start /B java -jar target/springboot-monitoring-0.0.1-SNAPSHOT.jar > app.log 2>&1' 
+        stage('Start Application') {
+             steps { 
+                bat 'echo Waiting for Spring Boot application...' 
                 bat 'ping 127.0.0.1 -n 30 > nul' 
-                bat 'type app.log' 
-                bat 'curl -f http://localhost:8082/java-app/actuator/health' 
-                }
+                bat 'docker logs %CONTAINER_NAME%'
+                 } 
+        }
+        stage('Health Check') { 
+            steps { 
+                bat 'curl -f http://localhost:%APP_PORT%/java-app/actuator/health' 
+                } 
         }
 
         stage('Verify Prometheus Metrics') {
