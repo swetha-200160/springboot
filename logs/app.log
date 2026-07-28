@@ -1,14 +1,121 @@
-2026-02-23T11:50:16.334+05:30  INFO 1520 --- [test] [main] com.example.demo.TestApplication         : Starting TestApplication v0.0.1-SNAPSHOT using Java 17.0.12 with PID 1520 (C:\Users\swethasuresh\works\code\demo\target\demo-0.0.1-SNAPSHOT.jar started by swethasuresh in C:\Users\swethasuresh\works\code\demo)
-2026-02-23T11:50:16.381+05:30 DEBUG 1520 --- [test] [main] com.example.demo.TestApplication         : Running with Spring Boot v4.0.2, Spring v7.0.3
-2026-02-23T11:50:16.387+05:30  INFO 1520 --- [test] [main] com.example.demo.TestApplication         : No active profile set, falling back to 1 default profile: "default"
-2026-02-23T11:50:22.731+05:30  INFO 1520 --- [test] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 9090 (http)
-2026-02-23T11:50:22.790+05:30  INFO 1520 --- [test] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2026-02-23T11:50:22.792+05:30  INFO 1520 --- [test] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.15]
-2026-02-23T11:50:22.979+05:30  INFO 1520 --- [test] [main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 6301 ms
-2026-02-23T11:50:25.013+05:30  INFO 1520 --- [test] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 9090 (http) with context path '/'
-2026-02-23T11:50:25.118+05:30  INFO 1520 --- [test] [main] com.example.demo.TestApplication         : Started TestApplication in 11.127 seconds (process running for 13.659)
-2026-02-23T11:51:47.447+05:30  INFO 1520 --- [test] [http-nio-9090-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2026-02-23T11:51:47.449+05:30  INFO 1520 --- [test] [http-nio-9090-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2026-02-23T11:51:47.468+05:30  INFO 1520 --- [test] [http-nio-9090-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 17 ms
-2026-02-23T12:01:24.328+05:30  INFO 1520 --- [test] [SpringApplicationShutdownHook] o.s.boot.tomcat.GracefulShutdown         : Commencing graceful shutdown. Waiting for active requests to complete
-2026-02-23T12:01:27.373+05:30  INFO 1520 --- [test] [tomcat-shutdown] o.s.boot.tomcat.GracefulShutdown         : Graceful shutdown complete
+2026-07-28T13:12:32.042+05:30  INFO 3148 --- [test-application] [main] com.example.demo.TestApplication         : Starting TestApplication v0.0.1-SNAPSHOT using Java 21.0.10 with PID 3148 (C:\Users\swethasuresh\javaproject\springboot-master\target\demo-0.0.1-SNAPSHOT.jar started by swethasuresh in C:\Users\swethasuresh\javaproject\springboot-master)
+2026-07-28T13:12:32.090+05:30 DEBUG 3148 --- [test-application] [main] com.example.demo.TestApplication         : Running with Spring Boot v3.5.5, Spring v6.2.10
+2026-07-28T13:12:32.092+05:30  INFO 3148 --- [test-application] [main] com.example.demo.TestApplication         : No active profile set, falling back to 1 default profile: "default"
+2026-07-28T13:12:33.559+05:30  WARN 3148 --- [test-application] [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: java.lang.IllegalStateException: Error processing condition on io.opentelemetry.instrumentation.spring.autoconfigure.internal.instrumentation.jdbc.JdbcInstrumentationAutoConfiguration
+2026-07-28T13:12:33.583+05:30  INFO 3148 --- [test-application] [main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2026-07-28T13:12:33.621+05:30 ERROR 3148 --- [test-application] [main] o.s.boot.SpringApplication               : Application run failed
+
+java.lang.IllegalStateException: Error processing condition on io.opentelemetry.instrumentation.spring.autoconfigure.internal.instrumentation.jdbc.JdbcInstrumentationAutoConfiguration
+	at org.springframework.boot.autoconfigure.condition.SpringBootCondition.matches(SpringBootCondition.java:60) ~[spring-boot-autoconfigure-3.5.5.jar!/:3.5.5]
+	at org.springframework.context.annotation.ConditionEvaluator.shouldSkip(ConditionEvaluator.java:99) ~[spring-context-6.2.10.jar!/:6.2.10]
+	at org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader$TrackedConditionEvaluator.shouldSkip(ConfigurationClassBeanDefinitionReader.java:495) ~[spring-context-6.2.10.jar!/:6.2.10]
+	at org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader.loadBeanDefinitionsForConfigurationClass(ConfigurationClassBeanDefinitionReader.java:131) ~[spring-context-6.2.10.jar!/:6.2.10]
+	at org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader.loadBeanDefinitions(ConfigurationClassBeanDefinitionReader.java:120) ~[spring-context-6.2.10.jar!/:6.2.10]
+	at org.springframework.context.annotation.ConfigurationClassPostProcessor.processConfigBeanDefinitions(ConfigurationClassPostProcessor.java:430) ~[spring-context-6.2.10.jar!/:6.2.10]
+	at org.springframework.context.annotation.ConfigurationClassPostProcessor.postProcessBeanDefinitionRegistry(ConfigurationClassPostProcessor.java:290) ~[spring-context-6.2.10.jar!/:6.2.10]
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanDefinitionRegistryPostProcessors(PostProcessorRegistrationDelegate.java:349) ~[spring-context-6.2.10.jar!/:6.2.10]
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:118) ~[spring-context-6.2.10.jar!/:6.2.10]
+	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:791) ~[spring-context-6.2.10.jar!/:6.2.10]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:609) ~[spring-context-6.2.10.jar!/:6.2.10]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.5.5.jar!/:3.5.5]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752) ~[spring-boot-3.5.5.jar!/:3.5.5]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439) ~[spring-boot-3.5.5.jar!/:3.5.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318) ~[spring-boot-3.5.5.jar!/:3.5.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361) ~[spring-boot-3.5.5.jar!/:3.5.5]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350) ~[spring-boot-3.5.5.jar!/:3.5.5]
+	at com.example.demo.TestApplication.main(TestApplication.java:10) ~[!/:0.0.1-SNAPSHOT]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.boot.loader.launch.Launcher.launch(Launcher.java:102) ~[demo-0.0.1-SNAPSHOT.jar:0.0.1-SNAPSHOT]
+	at org.springframework.boot.loader.launch.Launcher.launch(Launcher.java:64) ~[demo-0.0.1-SNAPSHOT.jar:0.0.1-SNAPSHOT]
+	at org.springframework.boot.loader.launch.JarLauncher.main(JarLauncher.java:40) ~[demo-0.0.1-SNAPSHOT.jar:0.0.1-SNAPSHOT]
+Caused by: java.lang.IllegalStateException: Failed to introspect Class [io.opentelemetry.instrumentation.spring.autoconfigure.OpenTelemetryAutoConfiguration$OpenTelemetrySdkConfig] from ClassLoader [org.springframework.boot.loader.launch.LaunchedClassLoader@2e817b38]
+	at org.springframework.util.ReflectionUtils.getDeclaredMethods(ReflectionUtils.java:483) ~[spring-core-6.2.10.jar!/:6.2.10]
+	at org.springframework.util.ReflectionUtils.doWithMethods(ReflectionUtils.java:360) ~[spring-core-6.2.10.jar!/:6.2.10]
+	at org.springframework.util.ReflectionUtils.getUniqueDeclaredMethods(ReflectionUtils.java:417) ~[spring-core-6.2.10.jar!/:6.2.10]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.lambda$getTypeForFactoryMethod$1(AbstractAutowireCapableBeanFactory.java:757) ~[spring-beans-6.2.10.jar!/:6.2.10]
+	at java.base/java.util.concurrent.ConcurrentHashMap.computeIfAbsent(ConcurrentHashMap.java:1740) ~[na:na]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.getTypeForFactoryMethod(AbstractAutowireCapableBeanFactory.java:756) ~[spring-beans-6.2.10.jar!/:6.2.10]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.determineTargetType(AbstractAutowireCapableBeanFactory.java:689) ~[spring-beans-6.2.10.jar!/:6.2.10]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.predictBeanType(AbstractAutowireCapableBeanFactory.java:660) ~[spring-beans-6.2.10.jar!/:6.2.10]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.isFactoryBean(AbstractBeanFactory.java:1716) ~[spring-beans-6.2.10.jar!/:6.2.10]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doGetBeanNamesForType(DefaultListableBeanFactory.java:639) ~[spring-beans-6.2.10.jar!/:6.2.10]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeanNamesForType(DefaultListableBeanFactory.java:611) ~[spring-beans-6.2.10.jar!/:6.2.10]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeanNamesForType(DefaultListableBeanFactory.java:596) ~[spring-beans-6.2.10.jar!/:6.2.10]
+	at org.springframework.boot.autoconfigure.condition.OnBeanCondition.collectBeanDefinitionsForType(OnBeanCondition.java:322) ~[spring-boot-autoconfigure-3.5.5.jar!/:3.5.5]
+	at org.springframework.boot.autoconfigure.condition.OnBeanCondition.getBeanDefinitionsForType(OnBeanCondition.java:314) ~[spring-boot-autoconfigure-3.5.5.jar!/:3.5.5]
+	at org.springframework.boot.autoconfigure.condition.OnBeanCondition.getMatchingBeans(OnBeanCondition.java:214) ~[spring-boot-autoconfigure-3.5.5.jar!/:3.5.5]
+	at org.springframework.boot.autoconfigure.condition.OnBeanCondition.evaluateConditionalOnBean(OnBeanCondition.java:153) ~[spring-boot-autoconfigure-3.5.5.jar!/:3.5.5]
+	at org.springframework.boot.autoconfigure.condition.OnBeanCondition.getMatchOutcome(OnBeanCondition.java:128) ~[spring-boot-autoconfigure-3.5.5.jar!/:3.5.5]
+	at org.springframework.boot.autoconfigure.condition.SpringBootCondition.matches(SpringBootCondition.java:47) ~[spring-boot-autoconfigure-3.5.5.jar!/:3.5.5]
+	... 22 common frames omitted
+Caused by: java.lang.NoClassDefFoundError: io/opentelemetry/common/ComponentLoader
+	at java.base/java.lang.Class.getDeclaredMethods0(Native Method) ~[na:na]
+	at java.base/java.lang.Class.privateGetDeclaredMethods(Class.java:3580) ~[na:na]
+	at java.base/java.lang.Class.getDeclaredMethods(Class.java:2678) ~[na:na]
+	at org.springframework.util.ReflectionUtils.getDeclaredMethods(ReflectionUtils.java:465) ~[spring-core-6.2.10.jar!/:6.2.10]
+	... 39 common frames omitted
+Caused by: java.lang.ClassNotFoundException: io.opentelemetry.common.ComponentLoader
+	at java.base/java.net.URLClassLoader.findClass(URLClassLoader.java:445) ~[na:na]
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:593) ~[na:na]
+	at org.springframework.boot.loader.net.protocol.jar.JarUrlClassLoader.loadClass(JarUrlClassLoader.java:107) ~[demo-0.0.1-SNAPSHOT.jar:0.0.1-SNAPSHOT]
+	at org.springframework.boot.loader.launch.LaunchedClassLoader.loadClass(LaunchedClassLoader.java:91) ~[demo-0.0.1-SNAPSHOT.jar:0.0.1-SNAPSHOT]
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:526) ~[na:na]
+	... 43 common frames omitted
+
+2026-07-28T13:16:19.338+05:30  INFO 5160 --- [test-application] [main] com.example.demo.TestApplication         : Starting TestApplication v0.0.1-SNAPSHOT using Java 21.0.10 with PID 5160 (C:\Users\swethasuresh\javaproject\springboot-master\target\demo-0.0.1-SNAPSHOT.jar started by swethasuresh in C:\Users\swethasuresh\javaproject\springboot-master)
+2026-07-28T13:16:19.342+05:30 DEBUG 5160 --- [test-application] [main] com.example.demo.TestApplication         : Running with Spring Boot v3.5.5, Spring v6.2.10
+2026-07-28T13:16:19.343+05:30  INFO 5160 --- [test-application] [main] com.example.demo.TestApplication         : No active profile set, falling back to 1 default profile: "default"
+2026-07-28T13:16:21.827+05:30  INFO 5160 --- [test-application] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-07-28T13:16:21.850+05:30  INFO 5160 --- [test-application] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-07-28T13:16:21.851+05:30  INFO 5160 --- [test-application] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.44]
+2026-07-28T13:16:21.913+05:30  INFO 5160 --- [test-application] [main] o.a.c.c.C.[.[localhost].[/java-app]      : Initializing Spring embedded WebApplicationContext
+2026-07-28T13:16:21.914+05:30  INFO 5160 --- [test-application] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2456 ms
+2026-07-28T13:16:23.235+05:30  INFO 5160 --- [test-application] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 3 endpoints beneath base path '/actuator'
+2026-07-28T13:16:23.332+05:30  WARN 5160 --- [test-application] [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+2026-07-28T13:16:23.369+05:30  INFO 5160 --- [test-application] [main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2026-07-28T13:16:23.402+05:30 ERROR 5160 --- [test-application] [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+
+2026-07-28T14:42:46.254+05:30  INFO 14004 --- [test-application] [main] com.example.demo.TestApplication         : Starting TestApplication v0.0.1-SNAPSHOT using Java 21.0.10 with PID 14004 (C:\Users\swethasuresh\javaproject\springboot-master\target\demo-0.0.1-SNAPSHOT.jar started by swethasuresh in C:\Users\swethasuresh\javaproject\springboot-master)
+2026-07-28T14:42:46.259+05:30 DEBUG 14004 --- [test-application] [main] com.example.demo.TestApplication         : Running with Spring Boot v3.5.5, Spring v6.2.10
+2026-07-28T14:42:46.262+05:30  INFO 14004 --- [test-application] [main] com.example.demo.TestApplication         : No active profile set, falling back to 1 default profile: "default"
+2026-07-28T14:42:48.425+05:30  INFO 14004 --- [test-application] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8082 (http)
+2026-07-28T14:42:48.463+05:30  INFO 14004 --- [test-application] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-07-28T14:42:48.464+05:30  INFO 14004 --- [test-application] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.44]
+2026-07-28T14:42:48.524+05:30  INFO 14004 --- [test-application] [main] o.a.c.c.C.[.[localhost].[/java-app]      : Initializing Spring embedded WebApplicationContext
+2026-07-28T14:42:48.525+05:30  INFO 14004 --- [test-application] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2180 ms
+2026-07-28T14:42:49.886+05:30  INFO 14004 --- [test-application] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 3 endpoints beneath base path '/actuator'
+2026-07-28T14:42:49.973+05:30  WARN 14004 --- [test-application] [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+2026-07-28T14:42:50.009+05:30  INFO 14004 --- [test-application] [main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2026-07-28T14:42:50.036+05:30 ERROR 14004 --- [test-application] [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8082 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8082 or configure this application to listen on another port.
+
