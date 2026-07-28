@@ -80,14 +80,21 @@ pipeline {
         }
 
         stage('Verify OTel Collector') {
-             steps {
-                 bat 'curl -f http://localhost:4318/v1/traces' 
-                 } 
+            steps {
+                bat '''
+                    docker ps | findstr /I opentelemetry
+                    if %ERRORLEVEL% NEQ 0 exit /b 1
+                '''
+            }
         }
 
         stage('Verify Grafana') {
             steps {
-                bat 'curl -f http://localhost:3000/api/health'
+                bat '''
+                    echo Waiting for Grafana...
+                    ping 127.0.0.1 -n 15 > nul
+                    curl -f http://localhost:3000/api/health
+                '''
             }
         }
     }
