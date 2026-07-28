@@ -65,7 +65,7 @@ pipeline {
 
         stage('Run Application') { 
             steps { 
-                bat 'start /B java -jar target\springboot-monitoring-0.0.1-SNAPSHOT.jar > app.log 2>&1' 
+                bat 'start /B java -jar target/springboot-monitoring-0.0.1-SNAPSHOT.jar > app.log 2>&1' 
                 bat 'ping 127.0.0.1 -n 30 > nul' 
                 bat 'type app.log' 
                 bat 'curl -f http://localhost:8082/java-app/actuator/health' 
