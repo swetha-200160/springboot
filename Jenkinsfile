@@ -52,7 +52,7 @@ pipeline {
             steps {
                 bat '''
                     docker run -d --name %CONTAINER_NAME% ^
-                    -p %APP_PORT%:8080 ^
+                    -p %APP_PORT%:8082 ^
                     -e OTEL_SERVICE_NAME=%OTEL_SERVICE_NAME% ^
                     -e OTEL_EXPORTER_OTLP_ENDPOINT=%OTEL_EXPORTER_OTLP_ENDPOINT% ^
                     -e OTEL_EXPORTER_OTLP_PROTOCOL=%OTEL_EXPORTER_OTLP_PROTOCOL% ^
