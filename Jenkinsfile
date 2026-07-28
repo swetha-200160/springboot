@@ -1,5 +1,4 @@
 pipeline {
-
     agent any
 
     tools {
@@ -7,9 +6,14 @@ pipeline {
     }
 
     environment {
-        IMAGE_NAME = "springboot-monitoring"
-        CONTAINER_NAME = "springboot-app"
-        APP_PORT = "8082"
+        IMAGE_NAME = 'springboot-monitoring'
+        CONTAINER_NAME = 'springboot-app'
+        APP_PORT = '8082'
+
+        // OpenTelemetry
+        OTEL_SERVICE_NAME = 'springboot-app'
+        OTEL_EXPORTER_OTLP_ENDPOINT = 'http://host.docker.internal:4317'
+        OTEL_EXPORTER_OTLP_PROTOCOL = 'grpc'
     }
 
     stages {
@@ -41,55 +45,63 @@ pipeline {
         stage('Stop Old Container') {
             steps {
                 bat '''
-                docker rm -f %CONTAINER_NAME% || exit 0
+                    docker rm -f %CONTAINER_NAME% || exit 0
                 '''
             }
         }
 
-        stage('Run Docker Container') {
+        stage('Run Docker Container with OTEL') {
             steps {
-                bat 'docker run -d --name %CONTAINER_NAME% -p %APP_PORT%:8080 %IMAGE_NAME%'
+                bat '''
+                    docker run -d --name %CONTAINER_NAME% ^
+                    -p %APP_PORT%:8080 ^
+                    -e OTEL_SERVICE_NAME=%OTEL_SERVICE_NAME% ^
+                    -e OTEL_EXPORTER_OTLP_ENDPOINT=%OTEL_EXPORTER_OTLP_ENDPOINT% ^
+                    -e OTEL_EXPORTER_OTLP_PROTOCOL=%OTEL_EXPORTER_OTLP_PROTOCOL% ^
+                    %IMAGE_NAME%
+                '''
             }
         }
 
         stage('Application Health Check') {
-    steps {
-        bat '''
-        echo Waiting for Spring Boot application...
-
-        ping 127.0.0.1 -n 10 > nul
-
-        curl -f http://localhost:%APP_PORT%/java-app/actuator/health
-        '''
-    }
-}
+            steps {
+                bat '''
+                    echo Waiting for Spring Boot application...
+                    ping 127.0.0.1 -n 10 > nul
+                    curl -f http://localhost:%APP_PORT%/java-app/actuator/health
+                '''
+            }
+        }
 
         stage('Verify Prometheus Metrics') {
             steps {
                 bat 'curl http://localhost:%APP_PORT%/java-app/actuator/prometheus'
             }
         }
-          stage('Verify Grafana') {
-    steps {
-        bat '''
-        curl -f http://localhost:3000/api/health
-        '''
+
+        stage('Verify OTel Collector') {
+            steps {
+                bat 'curl -f http://localhost:4318'
+            }
+        }
+
+        stage('Verify Grafana') {
+            steps {
+                bat 'curl -f http://localhost:3000/api/health'
+            }
+        }
     }
-}
-    }   // <-- This closes stages block
 
     post {
-
         success {
             echo 'Application deployed successfully.'
             echo 'Prometheus metrics endpoint is available.'
+            echo 'OpenTelemetry is configured.'
             echo 'Open Grafana to view dashboards.'
         }
 
         failure {
             echo 'Pipeline failed.'
         }
-
-    }   // <-- This closes post block
-
-}       // <-- This closes pipeline
+    }
+}
