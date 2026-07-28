@@ -70,13 +70,13 @@ pipeline {
         }
         stage('Health Check') { 
             steps { 
-                bat 'curl -f http://localhost:%APP_PORT%/actuator/health' 
-                } 
+                bat 'curl -f http://localhost:%APP_PORT%/java-app/actuator/health'
+                 } 
         }
 
         stage('Verify Prometheus Metrics') {
             steps {
-                bat  'curl -f http://localhost:%APP_PORT%/actuator/prometheus'
+                bat  'curl -f http://localhost:%APP_PORT%/java-app/actuator/prometheus'
             }
         }
 
